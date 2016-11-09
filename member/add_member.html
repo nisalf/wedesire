@@ -1,0 +1,109 @@
+<form class="form-horizontal alert alert-warning"  id="empForm" name="empList" ng-submit="createItem(obj);" hidden>
+	<h3 class="text-center">{{formLabel}}</h3>
+	<div class="form-group">
+		<label for="t_title">Title</label>
+		<input type="hidden" id="cmb_title" class="form-control" ng-model="obj.uuid" value="{{obj.uuid}}"/>
+		<select class="form-control" id="cmb_title" ng-model="obj.title">
+			<option value="">---Please select---</option>
+			<option value="MR">Mr.</option>
+			<option value="MRS">Mrs.</option>
+			<option value="MS">Ms.</option>
+			<option value="Mstr">Mstr.</option>
+			<option value="REV">Rev.</option>
+			<option value="DR">Dr.</option>
+			 
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="t_emp_email">Member Name</label>
+		<input type="text" id="t_emp_email" class="form-control" ng-model="obj.memberName" value="{{obj.memberName}}"/>
+	</div>
+	<div class="form-group">
+		<label for="t_emp_gender">Sex</label>
+		<label><input type="radio" value="MALE" ng-model="obj.gender"/>Male</label>
+		<label><input type="radio" value="FEMALE" ng-model="obj.gender"/>Female</label>
+	</div>
+	
+	<div class="form-group">
+		<label for="cmb_category">Member Category</label>
+		<select class="form-control" id="cmb_category" ng-model="obj.memberCategory">
+			<option value="">---Please select---</option>
+			<option value="ADULT">ADULT</option>
+			<option value="CHILD">CHILD</option>
+			 
+		</select>
+		
+	</div >
+
+	<div class="form-group">
+		<label for="cmb_liquorType">Liquor Type</label>
+		<select class="form-control" id="cmb_liquorType" ng-model="obj.liquorType">
+			<option value="">---Please select---</option>
+			<option value="NONE">NONE</option>
+			<option value="HARD">HARD</option>
+			<option value="BEER">BEER</option>
+			 
+		</select>
+		
+	</div >
+
+	<div class="form-group">
+		<label for="cmb_liquorType">Participation Level</label>
+		<select class="form-control" id="cmb_participation" ng-model="obj.participationLevel">
+			<option value="">---Please select---</option>
+			<option value="CONFIRM">CONFIRMED</option>
+			<option value="NOT_CONFIRM">NOT CONFIRMED</option>
+			
+		</select>
+		
+	</div >
+	<div class="form-group">
+		<label for="cmb_card">Card Required?</label>
+		<select class="form-control" id="cmb_card" ng-model="obj.cardRequiredType">
+			<option value="">---Please select---</option>
+			<option value="NO">NO</option>
+			<option value="YES">YES</option>
+			 
+		</select>
+	</div >
+	
+	<div class="form-group">
+		<label for="cmb_cardMemberShip">Card Invitation Type</label>
+		<select class="form-control" id="cmb_cardMemberShip" ng-model="obj.cardinvitationType">
+			<option value="">---Please select---</option>
+			<option value="NONE">NONE</option>
+			<option value="INDIVIDUAL">INDIVIDUAL</option>
+			<option value="COUPLE">COUPLE</option>
+			<option value="FAMILY">FAMILY</option>
+			 
+		</select>
+	</div >
+	
+	<div class="form-group">
+		<label for="cmb_functionType">Function Type</label>
+		<select class="form-control" id="cmb_functionType" ng-model="obj.bothFunctions">
+			<option value="">---Please select---</option>
+			<option value="BOTH">BOTH</option>
+			<option value="CHURCH">CHURCH</option>
+			
+		</select>
+		
+	</div >
+	
+	<div class="form-group">
+		<label for="t_location">Location</label>
+		<input type="text" id="t_location" class="form-control" ng-model="obj.location" value="{{obj.location}}"/>
+	</div >
+	
+	<div class="form-group">
+		<label for="rd_status">Status</label>
+		<div id="rd_status">
+			<div class="btn-group">
+				<label class="btn btn-success active" ng-model="obj.status" uib-btn-radio="'ACTIVE'" btn-checkbox-true="true" uncheckable>Active</label>
+				<label class="btn btn-danger" ng-model="obj.status" uib-btn-radio="'INACTIVE'" uncheckable>Inactive</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group"><button class="btn btn-warning">Save</button></div>
+	
+</form>

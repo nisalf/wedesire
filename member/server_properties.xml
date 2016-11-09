@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EnigmaSettings xmlns="http://ns.adobe.com/air/framework/update/description/1.0">
+	<enigmaserver>Local-Upul</enigmaserver>
+	<enigmaadmin>upul@jetwing.lk</enigmaadmin>
+	<docurl>http://localhost:8400/samples/JWSDocuments/</docurl>
+	<buildurl>http://localhost:8400/samples/builds/update.xml</buildurl>
+	<buildpath>http://localhost:8400/samples/builds/</buildpath>
+</EnigmaSettings>

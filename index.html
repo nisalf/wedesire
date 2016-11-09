@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="weddingApp">
+
+  <head>
+    <meta charset="utf-8" />
+	<title>Wedding Planner</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+  <body>
+  
+	<nav class="navbar navbar-inverse" ng-controller="navController" ng-hide="hideMenus">
+	
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <a class="navbar-brand" href="#/">WebSiteName</a>
+		</div>
+		<ul class="nav navbar-nav" >
+		  <li class="dropdown" ng-repeat="option in navBarOptions" ng-model="option.hideOption" ng-if="isManageServiceActive('/')"><a href="#/{{option.optionLink}}" class="dropdown-toggle" data-toggle="dropdown">{{option.optionText}}<b class="caret" ng-if="hasSubMenu(option.suboptions)"></b></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="suboption in option.suboptions"><a href="#/{{suboption.optionLink}}">{{suboption.optionText}}</a></li>
+			</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li ng-init="loggedInUser"><a href="#"><span class="glyphicon glyphicon-user"></span>Logged in as {{globals.currentUser.username}}</a></li>
+			<li><a href="#here" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+		</ul>
+	  </div>
+	</nav>
+    <div ng-view></div>
+        
+
+
+
+    <script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/ui-bootstrap-tpls-2.0.1.min.js"></script>
+	<script src="lib/jQuery/jquery.min.js"></script>
+    <script src="//code.angularjs.org/1.5.8/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.5.8/angular-cookies.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="weddingMaster/js/weddingController.js"></script>
+	<script src="Group/js/GroupController.js"></script>
+	<script src="login/js/loginController.js"></script>
+	<script src="member/js/MemberController.js"></script>
+	<script src="login/js/loginService.js"></script>
+	<script src="service/js/ServiceMasterController.js"></script>
+	<script src="service/service_rates/js/ServiceRatesController.js"></script>	
+	<script src="report/js/reportController.js"></script>	
+	<script src="report/guest_details_report/js/GuestDetailReportController.js"></script>	
+  </body>
+
+</html>

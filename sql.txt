@@ -1,0 +1,2 @@
+select gm.uuid, CONCAT(gm.title, ' ', gm.memberName) as `Guest Name`, gm.gender, gm.memberCategory, gm.liquorType, gm.participationLevel, gm.cardRequiredType, gm.cardinvitationType, g.groupName, g.inviteOnPriority from group_member as gm inner join
+(select * from `group`) as g on g.uuid = gm.groupId WHERE gm.`status` = 'ACTIVE' AND g.`status`	 = 'ACTIVE' AND g.groupParty = 'GROOM' ORDER BY g.groupName

@@ -1,0 +1,23 @@
+<div class="container wrapper">
+	
+	<div class="col-xs-offset-2 col-xs-8">
+		<h1 class="text-left">Login</h1>
+		<div ng-show="error" class="alert alert-danger">{{error}}</div>
+		<form name="login_form" ng-submit="login()" role="form">
+			<div class="form-group">
+				<label for="t_username">username :</label>
+				<input type="text" id="t_username" name="t_username" class="form-control" ng-model="username" required/>
+				<span ng-show="login_form.t_username.$dirty && login_form.t_username.$error.required" class="help-block"><p class="text-danger">Username is required</p></span>
+			</div>
+			<div class="form-group">
+				<label for="t_password">password :</label>
+				<input type="password" id="t_password" name="t_password" class="form-control" ng-model="password" required/>
+				<span ng-show="login_form.t_password.$dirty && login_form.t_password.$error.required" class="help-block"><p class="text-danger">Password is required</p></span>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-danger" ng-disabled="login_form.$invalid">Login</button>
+			</div>
+		</form>
+	</div>
+	
+</div>

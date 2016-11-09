@@ -1,0 +1,56 @@
+<form class="form-horizontal alert alert-warning"  id="empForm" name="empList" ng-submit="createItem(obj);" hidden>
+	<h3 class="text-center">{{formLabel}}</h3>
+	<div class="form-group">
+		<label for="t_emp_name">Group Name</label>
+		<input type="hidden" id="t_emp_id" class="form-control" ng-model="obj.uuid" value="{{obj.uuid}}"/>
+		<input type="text" id="t_emp_name" class="form-control" ng-model="obj.groupName" value="{{obj.groupName}}"/>
+	</div>
+	<div class="form-group">
+		<label for="cmb_type">Group Type</label>
+		<select class="form-control" id=cmb_type ng-model="obj.groupType">
+			<option value="">---Please select---</option>
+			<option value="RELATIVE">RELATIVE</option>
+			<option value="FRIEND">FRIEND</option>
+			<option value="FAMILY">FAMILY</option>
+			<option value="NEIGHBOUR">NEIGHBOUR</option>
+			<option value="OTHER">OTHER</option>
+		</select>
+
+		
+	</div>
+	<div class="form-group">
+		<label for="cmb_type">Group Party</label>
+		<select class="form-control" id=cmb_type ng-model="obj.groupParty">
+			<option value="">---Please select---</option>
+			<option value="GROOM">GROOM</option>
+			<option value="BRIDE">BRIDE</option>
+			<option value="BOTH">BOTH</option>
+		</select>
+		
+	</div >
+	<div class="form-group">
+		<label for="cmb_priority">Priority level</label>
+		<select class="form-control" id=cmb_priority ng-model="obj.inviteOnPriority">
+			<option value="">---Please select---</option>
+			<option value="HIGH">HIGH</option>
+			<option value="MEDIUM">MEDIUM</option>
+			<option value="LOW">LOW</option>
+		</select>
+		
+	</div >
+	<div class="form-group">
+		<label for="t_remarks">Remarks</label>
+			<textArea type="text" id="t_remarks" class="form-control" ng-model="obj.remarks" value="{{obj.remarks}}"></textArea>
+	</div>
+	<div class="form-group">
+		<label for="rd_status">Status</label>
+		<div id="rd_status">
+			<div class="btn-group">
+				<label class="btn btn-success active" ng-model="obj.status" uib-btn-radio="'ACTIVE'" btn-checkbox-true="ACTIVE" uncheckable>Active</label>
+				<label class="btn btn-danger" ng-model="obj.status" uib-btn-radio="'INACTIVE'" btn-checkbox-false="INACTIVE"  uncheckable>Inactive</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group"><button class="btn btn-warning">Save</button></div>
+	
+</form>

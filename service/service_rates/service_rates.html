@@ -1,0 +1,72 @@
+
+		<div class="container wrapper">
+			<h1 class="text-center">Manage Rates of the Service</h1>
+			<nav class="navbar navbar-default">	
+			<div class="navbar-header">
+			<div class="alert alert-default navbar-brand search-box">
+				<button class="btn btn-primary" ng-click="showAddForm();">Add Rate <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+			</div>
+			<div class="alert alert-default input-group search-box">
+				<span class="input-group-btn">
+				<input type="text" class="form-control" placeholder="Search Groups" ng-model="searchText"/>
+				</span>
+			</div>
+			</div>
+			</nav>
+			
+			<div class="col-md-6 col-md-offset-3">
+			<div ng-include src="'service/service_rates/add_item.html'">
+			</div>
+
+			</div>
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-8">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="selected wedding and total number of groups"> {{globals.selectedService.serviceName}} <span class="badge">{{arraySize}}</span></button>
+				</div>
+				<div class="col-md-4" align="right">
+					<ul uib-pagination boundary-links="true" total-items="details.length" ng-model="currentPage" class="pagination-sm nopadding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pageSize" max-size="maxSize" ></ul>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Rate Id</th>
+							<th>Description</th>
+							<th>Rate Type</th>
+							<th>Rate</th>
+							<th>Status</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="detail in details | filter:searchText | startFrom:(currentPage - 1) * pageSize | limitTo:pageSize">
+						<td>
+						<span>{{detail.uuid}}</span></td>
+						<td><span class="text-info">{{detail.displayName}}</span></td>
+						<td>{{detail.rateType}}</td>
+						<td>{{detail.service_rate}}</td>
+						<td>{{detail.status}}</td>
+						<td>
+						<button class="btn btn-warning" ng-click="editItem(detail)" title="Edit"><span class="glyphicon glyphicon-edit"></span></button>
+						</td>
+						<!--td>
+						<button class="btn btn-success" ng-click="openItem(detail)" title="Open"><span class="glyphicon glyphicon-hand-up"></span></button>
+						</td-->
+						<td>
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" title="Delete" ng-click="prepareToDelete(detail);"><span class="glyphicon glyphicon-trash"></span></button>
+							
+						</td>
+						</tr>
+					</tbody>
+				</table>
+				<div ng-include src="'service/service_rates/delete_item.html'">
+							
+				</div>
+			</div>
+			
+
+		</div>
+

@@ -1,0 +1,49 @@
+<style>
+#datetimepicker {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+</style>
+<form class="form-horizontal alert alert-warning"  id="empForm" name="empList" ng-submit="createEmployee(obj);" hidden>
+	<h3 class="text-center">{{formLabel}}</h3>
+	<div class="form-group">
+		<label for="t_emp_name">Wedding Name</label>
+		<input type="hidden" id="t_emp_id" class="form-control" ng-model="obj.uuid" value="{{obj.uuid}}"/>
+		<input type="text" id="t_emp_name" class="form-control" ng-model="obj.weddingName" value="{{obj.weddingName}}"/>
+	</div>
+	<div class="form-group">
+		<label for="datetimepicker">Wedding Date</label>
+		 <div class="control">
+			<input type="text" id="datetimepicker" ng-model="obj.weddingDate" value="{{obj.weddingDate}}" placeholder="2017/01/01"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="t_emp_address">Start Time</label>
+		<input type="text" class="form-control" ng-model="obj.startTime" value="{{obj.startTime}}" placeholder="10:00"/>
+	</div>
+	<div class="form-group">
+		<label for="rd_status">Status</label>
+		<div id="rd_status">
+			<div class="btn-group">
+				<label class="btn btn-success active" ng-model="obj.status" uib-btn-radio="'ACTIVE'" btn-checkbox-true="true" uncheckable>Active</label>
+				<label class="btn btn-danger" ng-model="obj.status" uib-btn-radio="'INACTIVE'" uncheckable>Inactive</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group"><button class="btn btn-warning">Save</button></div>
+	
+</form>

@@ -1,0 +1,87 @@
+
+		<div class="container wrapper">
+			<h1 class="text-center">Guest Detail Report</h1>
+			<nav class="navbar navbar-default">	
+			<div class="navbar-header">
+			<div class="alert alert-default navbar-brand search-box">
+
+				<form class="form-inline">
+				  <div class="form-group">
+					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					<div class="input-group">
+					  <div class="input-group-addon">Group Party?</div>
+						 
+						 <select class="form-control" id=cmb_type ng-model="groupParty">
+							<option value="GROOM">GROOM</option>
+							<option value="BRIDE">BRIDE</option>
+							<option value="">BOTH</option>
+						</select>
+					  <div class="input-group-addon">Car Required?</div>
+						<select class="form-control" id="cmb_card" ng-model="cardRequiredStatus">
+								<option value="NO">NO</option>
+								<option value="YES">YES</option>
+								<option value="">All</option>
+								 
+						 </select>
+					</div>
+				  </div>
+				 <button class="btn btn-primary" ng-click="fetch();">Filter <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+				  <button class="btn btn-warning" ng-click="printContent('d_table');">Print <span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
+				</form>
+				
+			</div>
+			<div class="alert alert-default input-group search-box">
+				<span class="input-group-btn">
+				
+				</span>
+			</div>
+			</div>
+			</nav>
+			
+		
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-8">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="selected wedding and total number of groups"> {{globals.selectedWedding.weddingName}} <span class="badge">{{arraySize}}</span></button>
+				</div>
+				<div class="col-md-4" align="right">
+					<ul uib-pagination boundary-links="true" total-items="details.length" ng-model="currentPage" class="pagination-sm nopadding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pageSize" max-size="maxSize" ></ul>
+				</div>
+			</div>
+			<div class="table-responsive" id="d_table">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Guest Name</th>
+							<th>Gender</th>
+							<th>Member Age Category</th>
+							<th>Liquor Type</th>
+							<th>Participation Level</th>
+							<th>Card Required?</th>
+							<th>Invitation Type</th>
+							<th>Group Name</th>
+							<th>Priority Level</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="detail in details">
+						<td><span class="text-info">{{detail.GuestName}}</span></td>
+						<td>{{detail.gender}}</td>
+						<td>{{detail.memberCategory}}</td>
+						<td>{{detail.liquorType}}</td>
+						<td>{{detail.participationLevel}}</td>
+						<td>{{detail.cardRequiredType}}</td>
+						<td>{{detail.cardinvitationType}}</td>
+						<td>{{detail.groupName}}</td>
+						<td>{{detail.inviteOnPriority}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div ng-include src="'service/service_rates/delete_item.html'">
+							
+				</div>
+			</div>
+			
+
+		</div>
+

@@ -1,0 +1,61 @@
+<form class="form-horizontal alert alert-warning"  id="empForm" name="empList" ng-submit="createItem(obj);" hidden>
+	<h3 class="text-center">{{formLabel}}</h3>
+	<div class="form-group">
+		<label for="t_name">Service Name</label>
+		<input type="hidden" id="t_emp_id" class="form-control" ng-model="obj.uuid" value="{{obj.uuid}}"/>
+		<input type="text" id="t_name" class="form-control" ng-model="obj.serviceName" value="{{obj.serviceName}}"/>
+	</div>
+	<div class="form-group">
+		<label for="cmb_type">Service Type</label>
+		<select class="form-control" id=cmb_type ng-model="obj.serviceTypeId">
+			<option value="">---Please select---</option>
+			<option value="HALL">Hall</option>
+			<option value="PHOTOGRAPHY">Photography</option>
+			<option value="DRESSING">Dressing</option>
+			<option value="FLORA">Flora</option>
+			<option value="CAR">Car</option>
+			<option value="DRESS_MAKER">Dress Maker</option>
+			<option value="CARDS_BOXES">Cards & Boxes</option>
+			<option value="CARDS">Cards Only</option>
+			<option value="BOXES">Boxes Only</option>
+			<option value="BAND">Music Band</option>
+			<option value="DJ">DJ</option>
+			<option value="BAND_DJ">Music Band & DJ</option>
+			<option value="OTHER">OTHER</option>
+		</select>
+
+		
+	</div>
+	<div class="form-group">
+		<label for="T_contact">Contact Person</label>
+		<input type="text" id="T_contact" class="form-control" ng-model="obj.contactPerson" value="{{obj.contactPerson}}"/>
+	</div >
+	<div class="form-group">
+		<label for="T_contactNO">Contact No</label>
+		<input type="text" id="T_contactNO" class="form-control" ng-model="obj.contactNo" value="{{obj.contactNo}}"/>
+	</div >
+	<div class="form-group">
+		<label for="cmb_service_for">Service For?</label>
+		<select class="form-control" id=cmb_service_for ng-model="obj.seviceParty">
+			<option value="">---Please select---</option>
+			<option value="GROOM">GROOM</option>
+			<option value="BRIDE">BRIDE</option>
+			<option value="BOTH">BOTH</option>
+		</select>
+	</div >
+	<div class="form-group">
+		<label for="T_notes">Notes</label>
+		<textArea id="T_notes" class="form-control" ng-model="obj.remarks" value="{{obj.remarks}}"></textArea>
+	</div >
+	<div class="form-group">
+		<label for="rd_status">Status</label>
+		<div id="rd_status">
+			<div class="btn-group">
+				<label class="btn btn-success active" ng-model="obj.status" uib-btn-radio="'ACTIVE'" btn-checkbox-true="ACTIVE" uncheckable>Active</label>
+				<label class="btn btn-danger" ng-model="obj.status" uib-btn-radio="'INACTIVE'" btn-checkbox-false="INACTIVE"  uncheckable>Inactive</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group"><button class="btn btn-warning">Save</button></div>
+	
+</form>
