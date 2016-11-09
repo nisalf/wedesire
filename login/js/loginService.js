@@ -9,7 +9,7 @@ angular.module('loginModule')
 			
 			$http.post('login/api/login_fetch.php', { username: username, password: password })
                 .success(function (data) {
-					
+					console.log(data);
 					 var response =data;
                     callback(response);
                 }).error(function(error){
@@ -18,12 +18,13 @@ angular.module('loginModule')
 				
 		}
 		
-		service.SetCredentials = function (username, password) {
-            var authdata = username + ':' + '1111';
+		service.SetCredentials = function (username, userId) {
+            var authdata = username + ':' + userId;
  
             $rootScope.globals = {
                 currentUser: {
                     username: username,
+					userId:userId,
                     authdata: authdata
                 }
             };

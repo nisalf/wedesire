@@ -8,13 +8,13 @@ $weddingName = mysqli_real_escape_string($conn, $data->weddingName);
 $weddingDate = mysqli_real_escape_string($conn, $data->weddingDate);
 $startTime = mysqli_real_escape_string($conn, $data->startTime);
 $status = mysqli_real_escape_string($conn, $data->status);
+$userId = mysqli_real_escape_string($conn, $data->user);
 
-
-$sql = "INSERT into $db_name.wedding_master (weddingName,weddingDate,startTime,status) VALUES (?, ?, ?, ?)";
+$sql = "INSERT into $db_name.wedding_master (weddingName,weddingDate,startTime,status) VALUES (?, ?, ?, ?, ?)";
 
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss",$weddingName,$weddingDate,$startTime,$status);
+$stmt->bind_param("ssssi",$weddingName,$weddingDate,$startTime,$status, $userId);
 //$stmt->execute();
 if ($stmt->execute() == TRUE) {
     echo true;

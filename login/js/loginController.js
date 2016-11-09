@@ -14,7 +14,7 @@ angular.module("loginModule")
 							
 			if(response.success == true) {
 			
-						loginService.SetCredentials($scope.username, $scope.password);
+						loginService.SetCredentials($scope.username,response.userId);
 						$location.path('/');
 			} else {
 						$scope.error = "Username or password is incorrect";

@@ -14,6 +14,8 @@ snfApp.filter('startFrom', function() {
 
 var weddingController = ['$scope', '$cookieStore', '$rootScope','$http', function ($scope, $cookieStore, $rootScope,$http) 
 {
+	$rootScope.globals = $cookieStore.get('globals') || {};
+	
 	fetch();
 	$scope.isAddFormVisible  = false;
 	$scope.isEditFormVisible = false;
@@ -24,8 +26,8 @@ var weddingController = ['$scope', '$cookieStore', '$rootScope','$http', functio
 	function fetch()
 	{
 		// Sending request to fetch.php files 
-		$http.post('weddingMaster/db/fetch.php').success(function(data){
-		//alert(data);
+		$http.post('weddingMaster/db/fetch.php',{'user':$rootScope.globals.currentUser.userId}).success(function(data){
+		console.log(data);
 		// Stored the returned data into scope 
 		$scope.details = data;
 		
@@ -83,7 +85,7 @@ var weddingController = ['$scope', '$cookieStore', '$rootScope','$http', functio
 	
 	function insertEmployee(obj)
 	{
-		$http.post('weddingMaster/db/insert.php',{"weddingName":obj.weddingName,"weddingDate":obj.weddingDate,"startTime":obj.startTime,"status":obj.status}).success(function(data){
+		$http.post('weddingMaster/db/insert.php',{"weddingName":obj.weddingName,"weddingDate":obj.weddingDate,"startTime":obj.startTime,"status":obj.status, 'user':$rootScope.globals.currentUser.userId}).success(function(data){
 			if (data == true) 
 			{
 				fetch();

@@ -11,22 +11,24 @@ $name = mysqli_real_escape_string($conn, $data->username);
 $password = mysqli_real_escape_string($conn, $data->password);
 $md5_pass = md5($password);
 // mysqli query to fetch all data from database
-$query = "SELECT userName, password from $db_name.user where userName='$name' and password='$password' ORDER BY id ASC";
+$query = "SELECT * from $db_name.user where userName='$name' and password='$password' ORDER BY id ASC";
 
 $result = $conn->query($query);
 
 $isUserIn = false;
+$userId = null;
 
  if($result){
 	if($result->num_rows > 0) {
 		 while($row = $result->fetch_assoc()) {
 				//echo $json_info = json_encode($row);
 				$isUserIn = true;
+				$userId = $row['id'];
 		}
 	}
 }
 // Return json array containing data from the database
-echo $json_info = json_encode(array("success" =>$isUserIn));
+echo $json_info = json_encode(array("success" =>$isUserIn, "userId" =>$userId));
 
 
 $conn->close();
