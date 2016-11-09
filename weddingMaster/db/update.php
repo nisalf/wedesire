@@ -1,6 +1,6 @@
 <?php
 // Including database connections
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/angular/weddingApp/api/db_connect.php'); 
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/api/db_connect.php'); 
 
 $data = json_decode(file_get_contents("php://input"));
 
