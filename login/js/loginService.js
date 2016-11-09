@@ -9,7 +9,7 @@ angular.module('loginModule')
 			
 			$http.post('login/api/login_fetch.php', { username: username, password: password })
                 .success(function (data) {
-			console.log(data);		
+				
 					 var response =data;
                     callback(response);
                 }).error(function(error){
