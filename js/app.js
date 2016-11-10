@@ -8,8 +8,9 @@ angular.module('serviceMasterModule', []);
 angular.module('serviceRateModule', []);
 angular.module('reportModule', []);
 angular.module('guestDetailReportModule', []);
+angular.module('guestGroupReportModule', []);
 
-var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberModule', 'loginModule', 'serviceMasterModule', 'serviceRateModule', 'reportModule', 'guestDetailReportModule', 'ngRoute', 'ngCookies'])
+var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberModule', 'loginModule', 'serviceMasterModule', 'serviceRateModule', 'reportModule', 'guestDetailReportModule', 'guestGroupReportModule', 'ngRoute', 'ngCookies'])
 
 .config(['$routeProvider', function ($routeProvider) {
 
@@ -59,6 +60,12 @@ var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberM
 		.when('/guest-detail-report', {
             controller: 'guestDetailReportController',
             templateUrl: 'report/guest_details_report/guest_detail.html',
+			hideMenus: false
+        })
+		
+		.when('/guest-group-report', {
+            controller: 'guestGroupReportController',
+            templateUrl: 'report/guest_group_report/guest_group.html',
 			hideMenus: false
         })
  
@@ -118,6 +125,7 @@ var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberM
 	   },
 	   {
 		  optionText: 'Reports', optionLink: "reports", suboptions:[
+		  {optionText: "Guest Groups Report", optionLink: "guest-group-report"},
 		  {optionText: "Guest Report", optionLink: "guest-detail-report"},
 		  {optionText: "Guest Summery", optionLink: "guest-summery"}]
 	   }

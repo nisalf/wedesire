@@ -1,4 +1,4 @@
-var snfApp = angular.module("guestDetailReportModule", ['ui.bootstrap']);
+var snfApp = angular.module("guestGroupReportModule", ['ui.bootstrap']);
 
 snfApp.filter('startFrom', function() {
     return function(input, start) {
@@ -10,7 +10,7 @@ snfApp.filter('startFrom', function() {
     }
 });
 
-var guestDetailReportController = ['$scope', '$cookieStore', '$rootScope','$http', function ($scope, $cookieStore,$rootScope,$http) 
+var guestGroupReportController = ['$scope', '$cookieStore', '$rootScope','$http', function ($scope, $cookieStore,$rootScope,$http) 
 {
 	$rootScope.globals = $cookieStore.get('globals') || {};
 	
@@ -25,7 +25,7 @@ var guestDetailReportController = ['$scope', '$cookieStore', '$rootScope','$http
 	{
 	
 		// Sending request to fetch.php files 
-		$http.post('report/guest_details_report/db/fetch.php',{"weddingId":$rootScope.globals.selectedWedding.uuid,"groupParty":$scope.groupParty, "cardRequiredStatus":$scope.cardRequiredStatus, "groupType":$scope.groupType, "liquorType":$scope.liquorType, "inviteOnPriority":$scope.inviteOnPriority}).success(function(data){
+		$http.post('report/guest_group_report/db/fetch.php',{"weddingId":$rootScope.globals.selectedWedding.uuid,"groupParty":$scope.groupParty, "groupType":$scope.groupType, "inviteOnPriority":$scope.inviteOnPriority}).success(function(data){
 		
 		// Stored the returned data into scope 
 		
@@ -59,4 +59,4 @@ var guestDetailReportController = ['$scope', '$cookieStore', '$rootScope','$http
 			
 }];
 
-snfApp.controller("guestDetailReportController", guestDetailReportController);
+snfApp.controller("guestGroupReportController", guestGroupReportController);

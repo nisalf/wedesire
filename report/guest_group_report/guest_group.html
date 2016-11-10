@@ -12,7 +12,7 @@ font-size : 12px;
 </style>
 	<div class="snf-report-container">
 		<div class="container wrapper">
-			<h1 class="text-center">Guest Detail Report</h1>
+			<h1 class="text-center">Guest Groups Report</h1>
 			<nav class="navbar navbar-default">	
 			<div class="navbar-header">
 			<div class="alert alert-default navbar-brand search-box">
@@ -28,13 +28,7 @@ font-size : 12px;
 							<option value="BRIDE">BRIDE</option>
 							<option value="">BOTH</option>
 						</select>
-					  <div class="input-group-addon">Car Required?</div>
-						<select class="form-control" id="cmb_card" ng-model="cardRequiredStatus">
-								<option value="NO">NO</option>
-								<option value="YES">YES</option>
-								<option value="">All</option>
-						</select>
-					
+					  					
 					<div class="input-group-addon">Group Type</div>
 						<select class="form-control" id="cmb_grop_type" ng-model="groupType">
 								<option value="RELATIVE">RELATIVE</option>
@@ -45,14 +39,7 @@ font-size : 12px;
 								<option value="">All</option>
 						</select>
 					
-					<div class="input-group-addon">Liquor Type </div>
-							<select class="form-control" id="cmb_liquorType" ng-model="liquorType">
-								<option value="NONE">NONE</option>
-								<option value="HARD">HARD</option>
-								<option value="BEER">BEER</option>
-								<option value="">All</option>
-							</select>
-					
+						
 					<div class="input-group-addon">Priority Level </div>
 						<select class="form-control" id=cmb_priority ng-model="inviteOnPriority">
 							<option value="HIGH">HIGH</option>
@@ -92,28 +79,21 @@ font-size : 12px;
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>Guest Name</th>
-							<th>Gender</th>
-							<th>Member Age Category</th>
-							<th>Liquor Type</th>
-							<th>Participation Level</th>
-							<th>Card Required?</th>
-							<th>Invitation Type</th>
 							<th>Group Name</th>
+							<th>Guest Count</th>
+							<th>Group Party</th>
+							<th>Group Type</th>
 							<th>Priority Level</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="detail in details">
-						<td><span class="text-info">{{detail.GuestName}}</span></td>
-						<td>{{detail.gender}}</td>
-						<td>{{detail.memberCategory}}</td>
-						<td>{{detail.liquorType}}</td>
-						<td>{{detail.participationLevel}}</td>
-						<td>{{detail.cardRequiredType}}</td>
-						<td>{{detail.cardinvitationType}}</td>
-						<td>{{detail.groupName}}</td>
+						<td><span class="text-info">{{detail.groupName}}</span></td>
+						<td>{{detail.memberCount}}</td>
+						<td>{{detail.groupParty}}</td>
+						<td>{{detail.groupType}}</td>
 						<td>{{detail.inviteOnPriority}}</td>
+						
 						</tr>
 					</tbody>
 				</table>
