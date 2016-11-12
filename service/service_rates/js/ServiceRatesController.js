@@ -85,7 +85,8 @@ var serviceRateController = ['$scope', '$cookieStore', '$rootScope','$http', fun
 	function insertItem(obj)
 	{
 	
-		$http.post('service/service_rates/db/insert.php',{"serviceMasterId":$rootScope.globals.selectedService.uuid,"displayName":obj.displayName,"isFree":obj.isFree,"service_rate":obj.service_rate,"rateType":obj.rateType,"status":obj.status}).success(function(data){
+		$http.post('service/service_rates/db/insert.php',{"serviceMasterId":$rootScope.globals.selectedService.uuid,"displayName":obj.displayName,"isFree":obj.isFree,"service_rate":obj.service_rate,"rateType":obj.rateType,"status":obj.status,"maxPax":obj.maxPax,"serviceRateType":obj.serviceRateType}).success(function(data){
+			
 			if (data == true) 
 			{
 				fetch();
@@ -93,13 +94,13 @@ var serviceRateController = ['$scope', '$cookieStore', '$rootScope','$http', fun
 				$scope.isAddFormVisible = !$scope.isAddFormVisible;
 			}
 			else
-				alert(data);
+				console.log(data);
 		}).err
 	}
 	
 	function updateItem(obj)
 	{
-		$http.post('service/service_rates/db/update.php',{"uuid":obj.uuid,"displayName":obj.displayName,"isFree":obj.isFree,"service_rate":obj.service_rate,"rateType":obj.rateType,"status":obj.status}).success(function(data){
+		$http.post('service/service_rates/db/update.php',{"uuid":obj.uuid,"displayName":obj.displayName,"isFree":obj.isFree,"service_rate":obj.service_rate,"rateType":obj.rateType,"status":obj.status,"maxPax":obj.maxPax,"serviceRateType":obj.serviceRateType}).success(function(data){
 			if (data == true) 
 			{
 				fetch();

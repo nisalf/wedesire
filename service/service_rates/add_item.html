@@ -34,8 +34,28 @@
 		<label for="cmb_rate_type">Rate Type</label>
 		<select class="form-control" id=cmb_rate_type ng-model="obj.rateType">
 			<option value="">---Please select---</option>
-			<option value="UNIT_RATE">Per unit Rate</option>
+			<option value="PER_PAX">Per Pax Rate</option>
+			<option value="PER_KG">Per Kg Rate</option>
+			<option value="PER_L">Per L Rate</option>
 			<option value="PACKAGE_RATE">Package Rate</option>
+		</select>
+
+		
+	</div>
+	<div class="form-group">
+		<label for="t_emp_name">Maximum Pax</label>
+		<input type="text" id="t_maxpax" class="form-control" ng-model="obj.maxPax" value="{{obj.maxPax}}"/>
+	</div>
+	<div class="form-group">
+		<label for="cmb_cost_type">Cost Type</label>
+		<select class="form-control" id=cmb_cost_type ng-model="obj.serviceRateType">
+			<option value="">---Please select---</option>
+			<option value="LIQUOR">LIQUOR</option>
+			<option value="BITES">BITES</option>
+			<option value="PLATE">PLATE</option>
+			<option value="CARD">CARD</option>
+			<option value="BOX">BOX</option>
+			<option value="OTHER">OTHER</option>
 		</select>
 
 		

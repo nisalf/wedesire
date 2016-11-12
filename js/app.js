@@ -9,8 +9,9 @@ angular.module('serviceRateModule', []);
 angular.module('reportModule', []);
 angular.module('guestDetailReportModule', []);
 angular.module('guestGroupReportModule', []);
+angular.module('costDistributionModule', []);
 
-var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberModule', 'loginModule', 'serviceMasterModule', 'serviceRateModule', 'reportModule', 'guestDetailReportModule', 'guestGroupReportModule', 'ngRoute', 'ngCookies'])
+var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberModule', 'loginModule', 'serviceMasterModule', 'serviceRateModule', 'reportModule', 'guestDetailReportModule', 'guestGroupReportModule', 'costDistributionModule', 'ngRoute', 'ngCookies'])
 
 .config(['$routeProvider', function ($routeProvider) {
 
@@ -68,6 +69,12 @@ var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberM
             templateUrl: 'report/guest_group_report/guest_group.html',
 			hideMenus: false
         })
+		
+		.when('/cost-distribution-report', {
+            controller: 'costDistributionController',
+            templateUrl: 'report/cost_distribution/cost_distribution.html',
+			hideMenus: false
+        })
  
         .otherwise({ redirectTo: '/login' });
 }])
@@ -118,16 +125,25 @@ var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberM
 				return temp = false;
 	   }
 	   
+	   $scope.checkNavUrl = function(option)
+	   {
+		if(option.optionLink !="#")
+			$scope.navEnabled = true;
+		else
+			$scope.navEnabled = false;
+	   }
+	   
 	  
 	  $scope.navBarOptions = [
 	   {
-		  optionText: "Manage Services", optionLink: "service-master" , suboptions:[]
+		  optionText: "Manage Services & Cost Items", optionLink: "service-master" , suboptions:[]
 	   },
 	   {
-		  optionText: 'Reports', optionLink: "reports", suboptions:[
+		  optionText: 'Reports', optionLink: "#", suboptions:[
 		  {optionText: "Guest Groups Report", optionLink: "guest-group-report"},
 		  {optionText: "Guest Report", optionLink: "guest-detail-report"},
-		  {optionText: "Guest Summery", optionLink: "guest-summery"}]
+		  {optionText: "Guest Summery", optionLink: "guest-summery"},
+		   {optionText: "Cost Distribution", optionLink: "cost-distribution-report"}]
 	   }
 	  
 ];

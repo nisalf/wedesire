@@ -1,0 +1,97 @@
+<style>
+
+
+.snf-report-container, .form-control, .input-group-addon
+{
+font-size : 12px;
+}
+
+@media screen, print {
+   body { font-size: 10pt }
+ }
+</style>
+	<div class="container wrapper">
+		<div class="snf-report-container">
+			<div class="row">
+				<div class="col-md-8">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="selected wedding and total number of groups"> {{globals.selectedWedding.weddingName}}</button>
+				</div>
+				<div class="col-md-4" align="right">
+					 <button class="btn btn-warning" ng-click="printContent('printArea');" ng-model="printingAllowed" ng-disabled="printingAllowed">Print <span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
+				</div>
+			</div>
+			<br/>
+			<div id="printArea">
+			<div class="panel panel-default" ng-repeat="obj in costMasterList" ng-if="obj.items.length>0">
+				 <div class="panel-heading"><h4 class = "panel-title">{{obj.costMasterName}}<h4></div>
+				 <div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+							<tr>
+								<th></th>
+								<th colspan="2" class="text-center">Pax Count</th>
+								<th colspan="2" class="text-center">Cost</th>
+								<th colspan="2" class="text-center">Units</th>
+							</tr>
+							<tr>
+								<th></th>
+								<th>Groom</th>
+								<th>Bride</th>
+								<th>Groom</th>
+								<th>Bride</th>
+								<th>Groom</th>
+								<th>Bride</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="item in obj.items">
+								<td>{{item.description}}</td>
+								<td class="text-right">{{item.groomPax}}</td>
+								<td class="text-right">{{item.bridePax}}</td>
+								<td class="text-right">{{item.groomCost | number:2}}</td>
+								<td class="text-right">{{item.bideCost | number:2}}</td>
+								<td class="text-right">{{item.groomUnits | number:2}}</td>
+								<td class="text-right">{{item.brideUnits | number:2}}</td>
+							</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+								<td><strong>Total</strong></td>
+								<td></td>
+								<td></td>
+								<td class="text-right"><strong>{{getGroomCost(obj)| number:2}}</strong></td>
+								<td class="text-right"><strong>{{getBrideCost(obj)| number:2}}</strong></td>
+								<td class="text-right"><strong>{{getGroomUnits(obj)| number:2}}</strong></td>
+								<td class="text-right"><strong>{{getBrideUnits(obj) | number:2}}</strong></td>
+							</tr>
+							</tfoot>
+						</table>
+					 </div>
+				 </div>
+			</div>
+			<div class="panel panel-default">
+				 <div class="panel-heading"><h4 class = "panel-title">Total Cost<h4></div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+							
+							<tr>
+								<td class="text-right"><strong>Total Cost (Groom)</strong></td>
+								<td class="text-right">{{getTotalGroomCost() | number:2}}</td>
+							</tr>
+							<tr>
+								<td class="text-right"><strong>Total Cost (Bride)</strong></td>
+								<td class="text-right">{{getTotalBrideCost() | number:2}}</td>
+							</tr>
+							<tr>
+								<td class="text-right"><strong>Total Cost</strong></td>
+								<td class="text-right">{{getTotalCost() | number:2}}</td>
+							</tr>
+						</table>
+					</div>
+				 </div>
+			</div>
+			</div>	 
+				 
+		</div>	
+	</div>

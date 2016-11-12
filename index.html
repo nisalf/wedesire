@@ -14,11 +14,12 @@
 	
 	  <div class="container-fluid">
 		<div class="navbar-header">
-		  <a class="navbar-brand" href="#/">WebSiteName</a>
+		  <a class="navbar-brand" href="#/">Wedesire</a>
 		</div>
 		<ul class="nav navbar-nav" >
-		  <li class="dropdown" ng-repeat="option in navBarOptions" ng-model="option.hideOption" ng-if="isManageServiceActive('/')"><a href="#/{{option.optionLink}}" class="dropdown-toggle" data-toggle="dropdown">{{option.optionText}}<b class="caret" ng-if="hasSubMenu(option.suboptions)"></b></a>
-			<ul class="dropdown-menu">
+		  <li class="dropdown" ng-repeat="option in navBarOptions" ng-model="option.hideOption" ng-if="isManageServiceActive('/')"><a ng-href="#/{{option.optionLink}}" class="dropdown-toggle" data-toggle="dropdown" ng-if="option.optionLink!= '#'">{{option.optionText}}<b class="caret" ng-if="hasSubMenu(option.suboptions)"></b></a>
+		  <a class="dropdown-toggle" data-toggle="dropdown" ng-if="option.optionLink== '#'">{{option.optionText}}<b class="caret" ng-if="hasSubMenu(option.suboptions)"></b></a>
+			<ul class="dropdown-menu" ng-if="option.suboptions.length>0">
 				<li ng-repeat="suboption in option.suboptions"><a href="#/{{suboption.optionLink}}">{{suboption.optionText}}</a></li>
 			</ul>
 			</li>
@@ -51,6 +52,7 @@
 	<script src="report/js/ReportController.js"></script>	
 	<script src="report/guest_details_report/js/GuestDetailReportController.js"></script>	
 	<script src="report/guest_group_report/js/GuestGroupReportController.js"></script>	
+	<script src="report/cost_distribution/js/CostDistributionController.js"></script>	
   </body>
 
 </html>
