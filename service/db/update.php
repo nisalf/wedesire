@@ -19,7 +19,7 @@ $sql = "UPDATE $db_name.service_master SET serviceName=?, serviceTypeId=?, conta
 
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssssi",$serviceName,$serviceTypeId,$contactPerson,$contactNo,$seviceParty,$remarks,$uuid);
+$stmt->bind_param("sssssssi",$serviceName,$serviceTypeId,$contactPerson,$contactNo,$seviceParty,$remarks,$status,$uuid);
 //$stmt->execute();
 if ($stmt->execute() == TRUE) {
     echo true;
