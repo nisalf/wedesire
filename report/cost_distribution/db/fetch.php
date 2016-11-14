@@ -61,7 +61,7 @@ function getServiceItems($conn, $serviceId, $memberCoubntArr, $groupParty, $db_n
 				if($groupParty == 'GROOM' || $groupParty == 'BOTH')
 				{
 					$groomUnits = calculateUnits($costType, $rateType, $groomPax, $maxPax);
-					$groomCost = calculateCost($costType, $rate, $groomUnits);
+					$groomCost = calculateCost($costType, $rate, $groomUnits, $groupParty, $rateType);
 				}
 				
 				$brideUnits = 0;
@@ -70,7 +70,7 @@ function getServiceItems($conn, $serviceId, $memberCoubntArr, $groupParty, $db_n
 				if($groupParty == 'BRIDE' || $groupParty == 'BOTH')
 				{
 					$brideUnits = calculateUnits($costType, $rateType, $briePax, $maxPax);
-					$brideCost = calculateCost($costType, $rate, $brideUnits);
+					$brideCost = calculateCost($costType, $rate, $brideUnits, $groupParty, $rateType);
 				}
 				
 				
@@ -135,12 +135,14 @@ function calculateUnits($cost_type, $rate_type, $paxCount, $maxPax)
 	return $units;
 }
 
-function calculateCost($cost_type, $rate, $units)
+function calculateCost($cost_type, $rate, $units, $groupParty, $rateType)
 {
 	$cost = 0.0;
 	
 	$cost = $rate * $units;
 	
+	if($groupParty == 'BOTH' && $rateType == 'PACKAGE_RATE')
+		$cost = $cost/2;
 	
 	return $cost;
 }
