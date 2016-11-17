@@ -3,6 +3,8 @@
 
   <head>
     <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Wedding Planner</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -14,8 +16,15 @@
 	
 	  <div class="container-fluid">
 		<div class="navbar-header">
+		   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 		  <a class="navbar-brand" href="#/">Wedesire</a>
 		</div>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="nav navbar-nav" >
 		  <li class="dropdown" ng-repeat="option in navBarOptions" ng-model="option.hideOption" ng-if="isManageServiceActive('/')"><a ng-href="#/{{option.optionLink}}" class="dropdown-toggle" data-toggle="dropdown" ng-if="option.optionLink!= '#'">{{option.optionText}}<b class="caret" ng-if="hasSubMenu(option.suboptions)"></b></a>
 		  <a class="dropdown-toggle" data-toggle="dropdown" ng-if="option.optionLink== '#'">{{option.optionText}}<b class="caret" ng-if="hasSubMenu(option.suboptions)"></b></a>
@@ -24,10 +33,12 @@
 			</ul>
 			</li>
 		</ul>
+		
 		<ul class="nav navbar-nav navbar-right">
 			<li ng-init="loggedInUser"><a href="#"><span class="glyphicon glyphicon-user"></span>Logged in as {{globals.currentUser.username}}</a></li>
 			<li><a href="#here" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 		</ul>
+		</div>
 	  </div>
 	</nav>
     <div ng-view></div>
