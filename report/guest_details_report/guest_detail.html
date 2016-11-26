@@ -1,127 +1,137 @@
-<style>
-
-
-.snf-report-container, .form-control, .input-group-addon
-{
-font-size : 12px;
-}
-
-@media screen, print {
-   body { font-size: 10pt }
- }
-</style>
-	<div class="snf-report-container">
-		<div class="container wrapper">
-			<h1 class="text-center">Guest Detail Report</h1>
-			<nav class="navbar navbar-default">	
-			<div class="navbar-header">
-			<div class="alert alert-default navbar-brand search-box">
-
-				<form class="form-inline">
-				  <div class="form-group">
-					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-					<div class="input-group">
-					  <div class="input-group-addon">Group Party?</div>
-						 
-						 <select class="form-control" id=cmb_type ng-model="groupParty">
-							<option value="GROOM">GROOM</option>
-							<option value="BRIDE">BRIDE</option>
-							<option value="">BOTH</option>
-						</select>
-					  <div class="input-group-addon">Car Required?</div>
-						<select class="form-control" id="cmb_card" ng-model="cardRequiredStatus">
-								<option value="NO">NO</option>
-								<option value="YES">YES</option>
-								<option value="">All</option>
-						</select>
-					
-					<div class="input-group-addon">Group Type</div>
-						<select class="form-control" id="cmb_grop_type" ng-model="groupType">
-								<option value="RELATIVE">RELATIVE</option>
-								<option value="FRIEND">FRIEND</option>
-								<option value="FAMILY">FAMILY</option>
-								<option value="NEIGHBOUR">NEIGHBOUR</option>
-								<option value="OTHER">OTHER</option>
-								<option value="">All</option>
-						</select>
-					
-					<div class="input-group-addon">Liquor Type </div>
-							<select class="form-control" id="cmb_liquorType" ng-model="liquorType">
-								<option value="NONE">NONE</option>
-								<option value="HARD">HARD</option>
-								<option value="BEER">BEER</option>
-								<option value="">All</option>
-							</select>
-					
-					<div class="input-group-addon">Priority Level </div>
-						<select class="form-control" id=cmb_priority ng-model="inviteOnPriority">
-							<option value="HIGH">HIGH</option>
-							<option value="MEDIUM">MEDIUM</option>
-							<option value="LOW">LOW</option>
-							<option value="">All</option>
-						</select>
-					</div>
-				  </div>
-				  <label></label>
-				 <div class="nav navbar-nav navbar-right">
-				 <button class="btn btn-primary" ng-click="fetch();">Filter <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-				  <button class="btn btn-warning" ng-click="printContent('d_table');" ng-model="printingAllowed" ng-disabled="printingAllowed">Print <span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
-				  </div>
-				</form>
-				
-			</div>
-			<div class="alert alert-default input-group search-box">
-				<span class="input-group-btn">
-				
-				</span>
-			</div>
-			</div>
-			</nav>
-			
-		
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-8">
-					<button type="button" class="btn btn-info" data-toggle="tooltip" title="selected wedding and total number of groups"> {{globals.selectedWedding.weddingName}} <span class="badge">{{arraySize}}</span></button>
-				</div>
-				<div class="col-md-4" align="right">
-					<ul uib-pagination boundary-links="true" total-items="details.length" ng-model="currentPage" class="pagination-sm nopadding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pageSize" max-size="maxSize" ></ul>
-				</div>
-			</div>
-			<div class="table-responsive" id="d_table">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Guest Name</th>
-							<th>Gender</th>
-							<th>Member Age Category</th>
-							<th>Liquor Type</th>
-							<th>Participation Level</th>
-							<th>Card Required?</th>
-							<th>Invitation Type</th>
-							<th>Group Name</th>
-							<th>Priority Level</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="detail in details">
-						<td><span class="text-info">{{detail.GuestName}}</span></td>
-						<td>{{detail.gender}}</td>
-						<td>{{detail.memberCategory}}</td>
-						<td>{{detail.liquorType}}</td>
-						<td>{{detail.participationLevel}}</td>
-						<td>{{detail.cardRequiredType}}</td>
-						<td>{{detail.cardinvitationType}}</td>
-						<td>{{detail.groupName}}</td>
-						<td>{{detail.inviteOnPriority}}</td>
-						</tr>
-					</tbody>
-				</table>
-				<div ng-include src="'service/service_rates/delete_item.html'">
+		<style>
+		.snf-report-container, .form-control, .input-group-addon
+		{
+		font-size : 12px;
+		}
+		@media screen, print {
+		   body { font-size: 10pt }
+		 }
+		</style>
+			<div class="snf-report-container">
+				<div class="container wrapper">
+					<h1 class="text-center">Guest Detail Report</h1>
+					<nav class="navbar navbar-default">	
+					<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#searchBox">
+							<span class="glyphicon glyphicon-filter"></span>
 							
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="searchBox">
+					<div class="nav navbar-nav">
+					
+						
+							<div class="row">
+							 <div class="col-md-1">
+							  Group Party?
+							</div>	
+								 <div class="col-md-1">
+								 <select class="form-control" id=cmb_type ng-model="groupParty">
+									<option value="GROOM">GROOM</option>
+									<option value="BRIDE">BRIDE</option>
+									<option value="">BOTH</option>
+								</select>
+							 </div>	
+							 <div class="col-md-1">
+							 Car Required?
+							  </div>
+							   <div class="col-md-1">
+								<select class="form-control" id="cmb_card" ng-model="cardRequiredStatus">
+										<option value="NO">NO</option>
+										<option value="YES">YES</option>
+										<option value="">All</option>
+								</select>
+							</div>
+							 <div class="col-md-1">Group Type</div>
+							  <div class="col-md-1">
+								<select class="form-control" id="cmb_grop_type" ng-model="groupType">
+										<option value="RELATIVE">RELATIVE</option>
+										<option value="FRIEND">FRIEND</option>
+										<option value="FAMILY">FAMILY</option>
+										<option value="NEIGHBOUR">NEIGHBOUR</option>
+										<option value="OTHER">OTHER</option>
+										<option value="">All</option>
+								</select>
+							</div>
+							 <div class="col-md-1">Liquor Type </div>
+							  <div class="col-md-1">
+									<select class="form-control" id="cmb_liquorType" ng-model="liquorType">
+										<option value="NONE">NONE</option>
+										<option value="HARD">HARD</option>
+										<option value="BEER">BEER</option>
+										<option value="">All</option>
+									</select>
+							</div>
+							 <div class="col-md-1">Priority Level </div>
+							  <div class="col-md-1">
+								<select class="form-control" id=cmb_priority ng-model="inviteOnPriority">
+									<option value="HIGH">HIGH</option>
+									<option value="MEDIUM">MEDIUM</option>
+									<option value="LOW">LOW</option>
+									<option value="">All</option>
+								</select>
+								</div>
+								 <div class="col-md-1">
+						 <button class="btn btn-primary" ng-click="fetch();">Filter <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>
+						  <div class="col-md-1">
+						  <button class="btn btn-warning" ng-click="printContent('d_table');" ng-model="printingAllowed" ng-disabled="printingAllowed">Print <span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
+						  </div>
+							</div>
+						</div>
+						 </div>
+						
+						
+						
+					</div>
+					
+					
+					</nav>
+					
+				
+					<div class="clearfix"></div>
+					<div class="row">
+						<div class="col-md-8">
+							<button type="button" class="btn btn-info" data-toggle="tooltip" title="selected wedding and total number of groups"> {{globals.selectedWedding.weddingName}} <span class="badge">{{arraySize}}</span></button>
+						</div>
+						<div class="col-md-4" align="right">
+							<ul uib-pagination boundary-links="true" total-items="details.length" ng-model="currentPage" class="pagination-sm nopadding" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="pageSize" max-size="maxSize" ></ul>
+						</div>
+					</div>
+					<div class="table-responsive" id="d_table">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Guest Name</th>
+									<th>Gender</th>
+									<th>Member Age Category</th>
+									<th>Liquor Type</th>
+									<th>Participation Level</th>
+									<th>Card Required?</th>
+									<th>Invitation Type</th>
+									<th>Group Name</th>
+									<th>Priority Level</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="detail in details">
+								<td><span class="text-info">{{detail.GuestName}}</span></td>
+								<td>{{detail.gender}}</td>
+								<td>{{detail.memberCategory}}</td>
+								<td>{{detail.liquorType}}</td>
+								<td>{{detail.participationLevel}}</td>
+								<td>{{detail.cardRequiredType}}</td>
+								<td>{{detail.cardinvitationType}}</td>
+								<td>{{detail.groupName}}</td>
+								<td>{{detail.inviteOnPriority}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<div ng-include src="'service/service_rates/delete_item.html'">
+									
+						</div>
+					</div>
+					
+
 				</div>
 			</div>
-			
-
-		</div>
-	</div>

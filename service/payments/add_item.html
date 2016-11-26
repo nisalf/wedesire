@@ -1,0 +1,41 @@
+<form class="form-horizontal alert alert-warning"  id="empForm" name="empList" ng-submit="createItem(obj);" hidden>
+	<h3 class="text-center">{{formLabel}}</h3>
+	<div class="form-group">
+		<label for="t_emp_name">Description</label>
+		<input type="hidden" id="t_emp_id" class="form-control" ng-model="obj.uuid" value="{{obj.uuid}}"/>
+		<textArea id="t_emp_name" class="form-control" ng-model="obj.description" value="{{obj.description}}"> </textArea>
+	</div>
+	<div class="form-group">
+		<label for="cmb_type">Payment Party</label>
+		<select class="form-control" id=cmb_type ng-model="obj.paymentParty">
+			<option value="">---Please select---</option>
+			<option value="GROOM">GROOM</option>
+			<option value="BRIDE">BRIDE</option>
+			
+		</select>
+
+		
+	</div>
+	<div class="form-group">
+		<label for="datetimepicker">Payment Date</label>
+		 <div class="control">
+			<input type="text" id="datetimepicker" ng-model="obj.paymentDate" value="{{obj.paymentDate}}" placeholder="2017/01/01"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="t_rate">Amount</label>
+			<input type="text" id="t_rate" class="form-control" ng-model="obj.amount" value="{{obj.amount}}"/>
+	</div>
+	
+	<div class="form-group">
+		<label for="rd_status">Status</label>
+		<div id="rd_status">
+			<div class="btn-group">
+				<label class="btn btn-success active" ng-model="obj.status" uib-btn-radio="'ACTIVE'" btn-checkbox-true="ACTIVE" uncheckable>Active</label>
+				<label class="btn btn-danger" ng-model="obj.status" uib-btn-radio="'INACTIVE'" btn-checkbox-false="INACTIVE"  uncheckable>Inactive</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group"><button class="btn btn-warning">Save</button></div>
+	
+</form>

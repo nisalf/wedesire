@@ -10,8 +10,9 @@ angular.module('reportModule', []);
 angular.module('guestDetailReportModule', []);
 angular.module('guestGroupReportModule', []);
 angular.module('costDistributionModule', []);
+angular.module('paymentModule', []);
 
-var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberModule', 'loginModule', 'serviceMasterModule', 'serviceRateModule', 'reportModule', 'guestDetailReportModule', 'guestGroupReportModule', 'costDistributionModule', 'ngRoute', 'ngCookies'])
+var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberModule', 'loginModule', 'serviceMasterModule', 'serviceRateModule', 'reportModule', 'guestDetailReportModule', 'guestGroupReportModule', 'costDistributionModule', 'paymentModule', 'ngRoute', 'ngCookies'])
 
 .config(['$routeProvider', function ($routeProvider) {
 
@@ -73,6 +74,12 @@ var app = angular.module("weddingApp", ['weddingModule', 'groupModule', 'memberM
 		.when('/cost-distribution-report', {
             controller: 'costDistributionController',
             templateUrl: 'report/cost_distribution/cost_distribution.html',
+			hideMenus: false
+        })
+		
+		.when('/service-payments', {
+            controller: 'paymentController',
+            templateUrl: 'service/payments/payments.html',
 			hideMenus: false
         })
  

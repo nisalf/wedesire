@@ -1,4 +1,4 @@
-var snfApp = angular.module("serviceMasterModule", ['ui.bootstrap']);
+var snfApp = angular.module("paymentModule", ['ui.bootstrap']);
 
 snfApp.filter('startFrom', function() {
     return function(input, start) {
@@ -10,7 +10,7 @@ snfApp.filter('startFrom', function() {
     }
 });
 
-var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', function ($scope, $cookieStore,$rootScope,$http) 
+var paymentController = ['$scope', '$cookieStore', '$rootScope','$http', function ($scope, $cookieStore,$rootScope,$http) 
 {
 	$rootScope.globals = $cookieStore.get('globals') || {};
 	//console.log($rootScope);
@@ -24,7 +24,7 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 	function fetch()
 	{
 		// Sending request to fetch.php files 
-		$http.post('service/db/fetch.php',{"weddingId":$rootScope.globals.selectedWedding.uuid}).success(function(data){
+		$http.post('service/payments/db/fetch.php',{"serviceId":$rootScope.globals.selectedService.uuid}).success(function(data){
 		
 		// Stored the returned data into scope 
 		$scope.details = data;
@@ -38,7 +38,7 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 	
 	$scope.showAddForm = function()
 	{
-		$scope.formLabel = "Insert New Service";
+		$scope.formLabel = "Insert New Payment";
 		
 		if(!$scope.isEditFormVisible)
 		{
@@ -77,22 +77,16 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 	
 	$scope.openItem = function(obj)
 	{
-		$rootScope.globals.selectedService = obj;
+		$rootScope.globals.selectedGroup = obj;
 		$cookieStore.put('globals', $rootScope.globals);
-		window.location = "#/service-rates";
-	}
-	
-	$scope.makePayment = function(obj)
-	{
-		$rootScope.globals.selectedService = obj;
-		$cookieStore.put('globals', $rootScope.globals);
-		window.location = "#/service-payments";
+		window.location = "#/member";
 	}
 	
 	function insertItem(obj)
 	{
 	
-		$http.post('service/db/insert.php',{"weddingId":$rootScope.globals.selectedWedding.uuid,"serviceName":obj.serviceName,"serviceTypeId":obj.serviceTypeId,"contactPerson":obj.contactPerson,"contactNo":obj.contactNo,"seviceParty":obj.seviceParty,"remarks":obj.remarks,"status":obj.status}).success(function(data){
+		$http.post('service/payments/db/insert.php',{"uuid":obj.uuid, "serviceMasterId":$rootScope.globals.selectedService.uuid,"description":obj.description,"paymentParty":obj.paymentParty,"amount":obj.amount,"status":obj.status, "paymentDate":obj.paymentDate}).success(function(data){
+			
 			if (data == true) 
 			{
 				fetch();
@@ -100,13 +94,14 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 				$scope.isAddFormVisible = !$scope.isAddFormVisible;
 			}
 			else
-				alert(data);
+				console.log(data);
 		}).err
 	}
 	
 	function updateItem(obj)
 	{
-		$http.post('service/db/update.php',{"uuid":obj.uuid,"serviceName":obj.serviceName,"serviceTypeId":obj.serviceTypeId,"contactPerson":obj.contactPerson,"contactNo":obj.contactNo,"seviceParty":obj.seviceParty,"remarks":obj.remarks,"status":obj.status}).success(function(data){
+		$http.post('service/payments/db/update.php',{"uuid":obj.uuid,"description":obj.description,"paymentParty":obj.paymentParty,"amount":obj.amount,"status":obj.status, "paymentDate":obj.paymentDate}).success(function(data){
+			console.log(data);
 			if (data == true) 
 			{
 				fetch();
@@ -124,7 +119,7 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 	$scope.deleteEmployee = function(obj)
 	{
 	console.log(obj);
-		$http.post('service/db/delete.php',{"uuid":obj.uuid}).success(function(data){
+		$http.post('service/payments/db/delete.php',{"uuid":obj.uuid}).success(function(data){
 			if (data == 1) 
 			{
 				fetch();
@@ -143,7 +138,7 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 	
 	$scope.editItem = function(obj)
 	{
-		$scope.formLabel = "Update Service";
+		$scope.formLabel = "Update Payment";
 		if(!$scope.isAddFormVisible)
 		{
 			setFormVisibility();
@@ -160,4 +155,4 @@ var serviceMasterController = ['$scope', '$cookieStore', '$rootScope','$http', f
 		
 }];
 
-snfApp.controller("serviceMasterController", serviceMasterController);
+snfApp.controller("paymentController", paymentController);
